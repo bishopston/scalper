@@ -8,7 +8,7 @@
       <h3>Option Screeners</h3>
       <form method="GET">
         {{ optionscreenerform.as_p }}
-        <button class="btn btn-primary" id="mitsos">Submit</button>
+        <button class="btn btn-primary">Submit</button>
       </form>
     </div>
     <div class="vline col-sm-3">
@@ -43,21 +43,29 @@
         </tr>
         {% for option in page_obj %}
           <tr>
-            <th><small>{{ option.optionsymbol }}</small></th>
-            <th><small>{{ option.date|date:"SHORT_DATE_FORMAT" }}</small></th>
-            <th><small>
+            <td><small><a href="/options/{{option.optionsymbol}}/">{{ option.optionsymbol }}</a></small></td>
+            <td><small>{{ option.date|date:"SHORT_DATE_FORMAT" }}</small></td>
+            <td><small>
               {% if asset_query == 'FTSE' %}
                 {{ option.strike|add:"0" }}
               {% else %}
                 {{ option.strike }}
               {% endif %}
-            </small></th>
-            <th><small>{{ option.closing_price }}</small></th>
-            <th><small>{{ option.change }}</small></th>
-            <th><small>{{ option.volume }}</small></th>
-            <th><small>{{ option.trades }}</small></th>
-            <th><small>{{ option.open_interest }}</small></th>
-            <th><small>{{ option.expmonthdate|date:"SHORT_DATE_FORMAT" }}</small></th>
+            </small></td>
+            <td><small>{{ option.closing_price|floatformat:3 }}</small></td>
+            <td><small>
+              {% if option.change < 0 %}
+                <div class="change-negative"> 
+              {% else %} 
+                <div class="change-positive">
+              {% endif %}
+                {{ option.change }}%
+              </div>
+            </small></td>
+            <td><small>{{ option.volume }}</small></td>
+            <td><small>{{ option.trades }}</small></td>
+            <td><small>{{ option.open_interest }}</small></td>
+            <td><small>{{ option.expmonthdate|date:"SHORT_DATE_FORMAT" }}</small></td>
         {% endfor %}
       </table>
     </div>

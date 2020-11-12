@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from django.db.models import Max
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic.base import TemplateView
+from django.core.paginator import Paginator
+from django.http import JsonResponse
+
+from datetime import datetime
+import json
+
 from .models import Option
 from .forms import OptionScreenerForm
 
@@ -54,3 +58,26 @@ def OptionView(request):
     }
     return render(request, 'option_pricing/option.html', context)
 
+def OptionScreenerDetail(request, optionsymbol):
+    option_strikespan = Option.objects.filter(optionsymbol=optionsymbol).order_by('-date')
+    option_symbol = Option(optionsymbol=optionsymbol)
+    trade_symbol = option_symbol.optionsymbol 
+
+    context = {
+        'option_strikespan' : option_strikespan,
+        'trade_symbol' : trade_symbol,
+    }
+
+    return render(request, 'option_pricing/option_screener.html', context)
+
+def OptionJSChartView(request, tradesymbol):
+    optiondata = []
+
+    option = Option.objects.filter(optionsymbol=tradesymbol).order_by('date')
+    opt = option.all()
+
+    for i in opt:
+        optiondata.append({json.dumps(i.date.strftime("%d-%m-%Y")):i.closing_price})
+
+    print(optiondata)
+    return JsonResponse(optiondata, safe=False)

@@ -211,3 +211,11 @@ ul{
 .results {
 	padding-left: 20px;
 }
+
+.change-negative {
+	color: #FF0000;
+  }
+  
+.change-positive {
+	color: #33FF3C;
+  }

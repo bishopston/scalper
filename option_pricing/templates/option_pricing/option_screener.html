@@ -1,0 +1,90 @@
+{%  extends 'option_pricing/base.html' %}
+{% block content %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<div class="container bg-white text-dark">
+	<div class="row">
+        <div class="col-md-10">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="#summary" class="nav-link active" role="tab" data-toggle="tab">Summary</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#chart" class="nav-link" role="tab" data-toggle="tab">Chart</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="summary">Summary</div>
+                <div role="tabpanel" class="tab-pane" id="chart">
+                    <canvas id="optionChart" width="400" height="200">
+                </div>
+            </div>
+		</div>
+	</div>
+</div>
+
+<script>
+    var objId = "{{trade_symbol}}"
+    var dataURL = `/options/chart/${objId}/`
+
+    var state ={	
+		'items':[],
+		'values':[],
+	}
+
+    $.ajax({
+        method: "GET",
+        url: dataURL,
+        success: function(response){
+            for (var i in response){
+                var key = Object.keys(response[i])[0]
+				var key_stripped = key.replace('"', '')
+				var key_stripped_stripped = key_stripped.replace('"', '')
+				var value = Object.values(response[i])[0]
+            
+				state.items.push(key_stripped_stripped)
+				state.values.push(value)
+            }
+            setChart()
+        },
+        error: function(error_data){
+            console.log("error")
+            console.log(error_data)
+        }
+    })
+
+    function setChart(){
+        var ctx = document.getElementById("optionChart");
+       
+        var optionChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: state.items,
+            datasets: [{
+                label: objId,
+                data: state.values,
+                borderWidth: 1,
+                borderColor: 'rgba(66,139,202)'
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    })
+    };
+
+
+</script>
+
+
+{% endblock %}
