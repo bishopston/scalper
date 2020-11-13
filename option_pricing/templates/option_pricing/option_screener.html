@@ -68,7 +68,9 @@
                 label: objId,
                 data: state.values,
                 borderWidth: 1,
-                borderColor: 'rgba(66,139,202)'
+                borderColor: 'rgba(66,139,202)',
+                fill: false,
+                
             }]
         },
         options: {
@@ -76,6 +78,12 @@
                 yAxes: [{
                     ticks: {
                         beginAtZero:true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 20
                     }
                 }]
             }
