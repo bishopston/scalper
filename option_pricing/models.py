@@ -1,30 +1,6 @@
 from django.db import models
 
 class Option(models.Model):
-    FTSE = 'FTSE'
-    ALPHA = 'ALPHA'
-    HTO = 'HTO'
-    ETE = 'ETE'
-    OPAP = 'OPAP'
-    PPC = 'PPC'
-    TPEIR = 'TPEIR'
-    C = 'c'
-    P = 'p'
-    
-    ASSETS = [
-        (FTSE, 'FTSE'),
-        (ALPHA, 'ALPHA'),
-        (HTO, 'HTO'),
-        (ETE, 'ETE'),
-        (OPAP, 'OPAP'),
-        (PPC, 'PPC'),
-        (TPEIR, 'TPEIR'),
-    ]
-
-    OPTIONTYPES = [
-        (C, 'Call'),    
-        (P, 'Put')
-    ]
 
     optionsymbol = models.CharField(max_length=15)
     date = models.DateTimeField()
@@ -48,6 +24,9 @@ class Option(models.Model):
 
     def __str__(self):
 	    return self.optionsymbol
+
+    class Meta:
+        get_latest_by = "date"
 
 class Future(models.Model):
     futuresymbol = models.CharField(max_length=15)

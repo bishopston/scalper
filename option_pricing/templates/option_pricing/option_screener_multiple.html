@@ -20,6 +20,22 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="summary">Summary</div>
                 <div role="tabpanel" class="tab-pane" id="chart">
+                    <form method="GET" action=".">
+
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <div class="input-group">
+                                    <input class="form-control py-2 border-right-0 border" type="search" name="number_days" placeholder="number_days..." />
+                                    <span class="input-group-append">
+                                        <div class="input-group-text bg-transparent">
+                                            <i class="fa fa-search"></i>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>        
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
                     <canvas id="optionChart" width="400" height="200">
                 </div>
             </div>
@@ -27,9 +43,9 @@
 	</div>
 </div>
 
-<script>
+<script> 
     var objId = "{{trade_symbol}}"
-    var dataURL = `/options/chart/${objId}/`
+    var dataURL = `/options/chart_multiple/${objId}/`
 
     var state ={	
 		'items':[],
@@ -41,15 +57,16 @@
         url: dataURL,
         success: function(response){
             for (var i in response){
-                var key = Object.keys(response[i])[0]
+                var key = Object.keys(response[0][i])[0]
 				var key_stripped = key.replace('"', '')
 				var key_stripped_stripped = key_stripped.replace('"', '')
-				var value = Object.values(response[i])[0]
+				var value = Object.values(response[0][i])[0]
             
 				state.items.push(key_stripped_stripped)
 				state.values.push(value)
+
                 console.log(state.items)
-                console.log(state.values)                
+                console.log(state.values)
             }
             setChart()
         },
@@ -58,6 +75,8 @@
             console.log(error_data)
         }
     })
+
+
 
     function setChart(){
         var ctx = document.getElementById("optionChart");

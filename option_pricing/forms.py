@@ -3,9 +3,9 @@ from . models import Option
 
 import datetime
 
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset
-from crispy_forms.bootstrap import FormActions, InlineRadios
+#from crispy_forms.helper import FormHelper
+#from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field, Fieldset
+#from crispy_forms.bootstrap import FormActions, InlineRadios
 
 EXP_YEAR_CHOICES = [('', 'Choose...'), ('2019', '2019'), ('2020', '2020'), ('2021', '2021'),]
 EXP_MONTH_CHOICES = [
@@ -39,7 +39,7 @@ OPTION_TYPE = [
     ('c', 'Call'),
     ('p', 'Put'),
 ]
-
+"""
 class OptionSelectionForm(forms.Form):
     asset = forms.CharField(
         label="Underlying Asset",
@@ -133,7 +133,7 @@ def __init__(self, *args, **kwargs):
         ),
         Submit('submit', 'Submit')
     )
-
+"""
 class OptionScreenerForm(forms.Form):
     asset = forms.CharField(
         label="Underlying Asset",
