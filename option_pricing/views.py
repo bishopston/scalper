@@ -113,15 +113,15 @@ def OptionJSChartMultipleView(request, tradesymbol):
     _option5 = list(reversed(option5))
 
     for i in _option1:
-        optiondata[0].append({json.dumps(i.date.strftime("%d-%m-%Y")):i.closing_price})
+        optiondata[0].append({json.dumps(i.date.strftime("%#d/%m/%Y")):i.closing_price})
     for i in _option2:
-        optiondata[1].append({json.dumps(i.date.strftime("%d-%m-%Y")):i.closing_price})
+        optiondata[1].append({json.dumps(i.date.strftime("%#d/%m/%Y")):i.closing_price})
     for i in _option3:
-        optiondata[2].append({json.dumps(i.date.strftime("%d-%m-%Y")):i.closing_price})
+        optiondata[2].append({json.dumps(i.date.strftime("%#d/%m/%Y")):i.closing_price})
     for i in _option4:
-        optiondata[3].append({json.dumps(i.date.strftime("%d-%m-%Y")):i.closing_price})
+        optiondata[3].append({json.dumps(i.date.strftime("%#d/%m/%Y")):i.closing_price})
     for i in _option5:
-        optiondata[4].append({json.dumps(i.date.strftime("%d-%m-%Y")):i.closing_price})
+        optiondata[4].append({json.dumps(i.date.strftime("%#d/%m/%Y")):i.closing_price})
 
     print(optiondata[0])
     #optiondata = serializers.serialize("json", optiondata)

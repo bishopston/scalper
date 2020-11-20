@@ -20,22 +20,7 @@
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="summary">Summary</div>
                 <div role="tabpanel" class="tab-pane" id="chart">
-                    <form method="GET" action=".">
-
-                        <div class="form-row">
-                            <div class="form-group col-12">
-                                <div class="input-group">
-                                    <input class="form-control py-2 border-right-0 border" type="search" name="number_days" placeholder="number_days..." />
-                                    <span class="input-group-append">
-                                        <div class="input-group-text bg-transparent">
-                                            <i class="fa fa-search"></i>
-                                        </div>
-                                    </span>
-                                </div>
-                            </div>        
-                        </div>
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </form>
+                    <button class="btn btn-success" onclick="(new setChart()).update14Chart()">Update</button>
                     <canvas id="optionChart" width="400" height="200">
                 </div>
             </div>
@@ -50,6 +35,8 @@
     var state ={	
 		'items':[],
 		'values':[],
+        'itemss':[],
+		'valuess':[],
 	}
 
     $.ajax({
@@ -65,6 +52,9 @@
 				state.items.push(key_stripped_stripped)
 				state.values.push(value)
 
+                state.itemss = state.items.slice(-10)
+                state.valuess = state.values.slice(-10)
+
                 console.log(state.items)
                 console.log(state.values)
             }
@@ -76,18 +66,16 @@
         }
     })
 
-
-
     function setChart(){
         var ctx = document.getElementById("optionChart");
        
         var optionChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: state.items,
+            labels: state.itemss,
             datasets: [{
                 label: objId,
-                data: state.values,
+                data: state.valuess,
                 borderWidth: 1,
                 borderColor: 'rgba(66,139,202)',
                 fill: false,
@@ -104,13 +92,21 @@
                 xAxes: [{
                     ticks: {
                         autoSkip: true,
-                        maxTicksLimit: 20
+                        maxTicksLimit: 20,
+                        maxRotation: 90,
+                        minRotation: 90
                     }
                 }]
             }
         }
-    })
-    };
+        })
+        this.update14Chart = function(){
+            optionChart.data.labels = state.items;
+            optionChart.data.datasets[0].data = state.values;
+            optionChart.update();
+        }
+     };
+
 
 
 </script>
