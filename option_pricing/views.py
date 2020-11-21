@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.db.models import Max
 from django.core.paginator import Paginator
 from django.http import JsonResponse
-from django.core import serializers
 
 from datetime import datetime
 import json
@@ -70,7 +69,7 @@ def OptionScreenerDetail(request, optionsymbol):
     }
 
     return render(request, 'option_pricing/option_screener.html', context)
-
+"""
 def OptionScreenerMultipleDetail(request, optionsymbol):
     option_strikespan = Option.objects.filter(optionsymbol=optionsymbol).order_by('-date')
     option_symbol = Option(optionsymbol=optionsymbol)
@@ -82,7 +81,7 @@ def OptionScreenerMultipleDetail(request, optionsymbol):
     }
 
     return render(request, 'option_pricing/option_screener_multiple.html', context)
-
+"""
 
 def OptionJSChartView(request, tradesymbol):
     optiondata = []
@@ -91,11 +90,11 @@ def OptionJSChartView(request, tradesymbol):
     #opt = option.all()
 
     for i in option:
-        optiondata.append({json.dumps(i.date.strftime("%d-%m-%Y")):i.closing_price})
+        optiondata.append({json.dumps(i.date.strftime("%#d-%#m-%Y")):i.closing_price})
 
     print(optiondata)
     return JsonResponse(optiondata, safe=False)
-
+"""
 def OptionJSChartMultipleView(request, tradesymbol):
     optiondata = []
 
@@ -107,8 +106,8 @@ def OptionJSChartMultipleView(request, tradesymbol):
 
     print(optiondata)
     return JsonResponse(optiondata, safe=False)
-
-def OptionJSChartMultipleVolView(request, tradesymbol):
+"""
+def OptionJSChartVolView(request, tradesymbol):
     voldata = []
 
     vol = Option.objects.filter(optionsymbol=tradesymbol).order_by('date')
