@@ -9,6 +9,7 @@ urlpatterns = [
     path('options_multiple/<str:optionsymbol>/', views.OptionScreenerMultipleDetail, name='option_screener_multiple_detail'),
     path('options/chart/<str:tradesymbol>/', views.OptionJSChartView, name="option_jschart"),
     path('options/chart_multiple/<str:tradesymbol>/', views.OptionJSChartMultipleView, name="option_jschart_multiple"),
+    path('options/chart_multiple_vol/<str:tradesymbol>/', views.OptionJSChartMultipleVolView, name="option_jschart_multiple_vol"),
 ]
 
 #urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
