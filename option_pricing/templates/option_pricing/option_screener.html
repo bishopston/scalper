@@ -31,97 +31,99 @@
             </ul>
 
             <div class="my-3 tab-content">
-                <div role="tabpanel" class="tab-pane active" id="summary">
-                    <table class="table table-bordered table-sm">
-                        <thead>
-                            <tr>
-                              <th class="hidethis" scope="col">#</th>
-                              <th class="hidethis" scope="col">#</th>
-                              <th class="hidethis" scope="col">#</th>
-                              <th class="hidethis" scope="col">#</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="pl-4">
-                                    <div style="float:left;width:50%;"><small>Implied Volatility:</small></div>
-                                    <div style="float:right;width:50%;text-align: left;"><small>{{asset}}</small></div>
-                                </td>
-                                <td class="pl-4">
-                                    <div style="float:left;width:50%;"><small>Latest Trading:</small></div>
-                                    <div style="float:right;width:50%;text-align: left;"><small>{{latest_trad_date}}</small></div>
-                                </td>
-                                <td class="pl-4">
-                                    <div style="float:left;width:50%;"><small>Implied Volatility:</small></div>
-                                    <div style="float:right;width:50%;text-align: left;"><small>{{imp_vol}}</small></div>
-                                </td>
-                                <td class="pl-4">
-                                    <div style="float:left;width:50%;"><small>Implied Volatility:</small></div>
-                                    <div style="float:right;width:50%;text-align: left;"><small>{{imp_vol}}</small></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-4">
-                                    <div style="float:left;width:50%;"><small>Option Type:</small></div>
-                                    <div style="float:right;width:50%;text-align: left;"><small>{{optiontype}}</small></div>
-                                </td>
-                                <td class="px-4">
-                                    <div style="float:left;width:50%;"><small>Volume:</small></div>
-                                    <div style="float:right;width:50%;text-align: left;"><small>{{volume}}</small></div>
-                                </td>
-                                <td class="px-4">
-                                    <div style="float:left;width:50%;"><small>this is left</small></div>
-                                    <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
-                                </td>
-                                <td class="px-4">
-                                    <div style="float:left;width:50%;"><small>this is left</small></div>
-                                    <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-4">
-                                    <div style="float:left;width:50%;"><small>Expiration Date:</small></div>
-                                    <div style="float:right;width:50%;text-align: left;"><small>{{expdate}}</small></div>
-                                </td>
-                                <td class="px-4">
-                                    <div style="float:left;width:50%;"><small>Trades:</small></div>
-                                    <div style="float:right;width:50%;text-align: left;"><small>{{trades}}</small></div>
-                                </td>
-                                <td class="px-4">
-                                    <div style="float:left;width:50%;"><small>this is left</small></div>
-                                    <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
-                                </td>
-                                <td class="px-4">
-                                    <div style="float:left;width:50%;"><small>this is left</small></div>
-                                    <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-4">
-                                    <div style="float:left;width:50%;"><small>Exercise Price:</small></div>
-                                    <div style="float:right;width:50%;text-align: left;"><small>
-                                        {% if asset == 'FTSE' %}
-                                            {{ strike|add:"0" }}
-                                        {% else %}
-                                            {{ strike }}
-                                        {% endif %}
-                                    </small></div>
-                                </td>
-                                <td class="px-4">
-                                    <div style="float:left;width:50%;"><small>Open Interest:</small></div>
-                                    <div style="float:right;width:50%;text-align: left;"><small>{{open_interest}}</small></div>
-                                </td>
-                                <td class="px-4">
-                                    <div style="float:left;width:50%;"><small>this is left</small></div>
-                                    <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
-                                </td>
-                                <td class="px-4">
-                                    <div style="float:left;width:50%;"><small>this is left</small></div>
-                                    <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="container bg-white text-dark">
+                    <div role="tabpanel" class="tab-pane active" id="summary">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                <th class="hidethis w-25" scope="col">#</th>
+                                <th class="hidethis w-25" scope="col">#</th>
+                                <th class="hidethis w-25" scope="col">#</th>
+                                <th class="hidethis w-25" scope="col">#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="px-4 w-25">
+                                        <div style="float:left;text-align: left;"><small>Asset:</small></div>
+                                        <div style="float:right;text-align: left;"><small>{{asset}}</small></div>
+                                    </td>
+                                    <td class="px-4 w-25">
+                                        <div style="float:left;text-align: left;"><small>Latest Trading:</small></div>
+                                        <div style="float:right;text-align: left;"><small>{{latest_trad_date}}</small></div>
+                                    </td>
+                                    <td class="px-4 w-25">
+                                        <div style="float:left;text-align: left;"><small>Implied Volatility:</small></div>
+                                        <div style="float:right;text-align: left;"><small>{{imp_vol}}</small></div>
+                                    </td>
+                                    <td class="px-4 w-25">
+                                        <div style="float:left;text-align: left;"><small>Implied Volatility:</small></div>
+                                        <div style="float:right;text-align: left;"><small>{{imp_vol}}</small></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="pl-4">
+                                        <div style="float:left;width:50%;text-align: left;"><small>Option Type:</small></div>
+                                        <div style="float:right;width:50%;text-align: left;"><small>{{optiontype}}</small></div>
+                                    </td>
+                                    <td class="pl-4">
+                                        <div style="float:left;width:50%;"><small>Volume:</small></div>
+                                        <div style="float:right;width:50%;text-align: left;"><small>{{volume}}</small></div>
+                                    </td>
+                                    <td class="pl-4">
+                                        <div style="float:left;width:50%;"><small>this is left</small></div>
+                                        <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
+                                    </td>
+                                    <td class="pl-4">
+                                        <div style="float:left;width:50%;"><small>this is left</small></div>
+                                        <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="pl-4">
+                                        <div style="float:left;width:50%;text-align: left;"><small>Expiration Date:</small></div>
+                                        <div style="float:right;width:50%;text-align: left;"><small>{{expdate}}</small></div>
+                                    </td>
+                                    <td class="pl-4">
+                                        <div style="float:left;width:50%;"><small>Trades:</small></div>
+                                        <div style="float:right;width:50%;text-align: left;"><small>{{trades}}</small></div>
+                                    </td>
+                                    <td class="pl-4">
+                                        <div style="float:left;width:50%;"><small>this is left</small></div>
+                                        <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
+                                    </td>
+                                    <td class="pl-4">
+                                        <div style="float:left;width:50%;"><small>this is left</small></div>
+                                        <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="pl-4">
+                                        <div style="float:left;width:50%;"><small>Exercise Price:</small></div>
+                                        <div style="float:right;width:50%;text-align: left;"><small>
+                                            {% if asset == 'FTSE' %}
+                                                {{ strike|add:"0" }}
+                                            {% else %}
+                                                {{ strike }}
+                                            {% endif %}
+                                        </small></div>
+                                    </td>
+                                    <td class="pl-4">
+                                        <div style="float:left;width:50%;"><small>Open Interest:</small></div>
+                                        <div style="float:right;width:50%;text-align: left;"><small>{{open_interest}}</small></div>
+                                    </td>
+                                    <td class="pl-4">
+                                        <div style="float:left;width:50%;"><small>this is left</small></div>
+                                        <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
+                                    </td>
+                                    <td class="pl-4">
+                                        <div style="float:left;width:50%;"><small>this is left</small></div>
+                                        <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="chart">
                     <div class="container bg-white text-dark">
