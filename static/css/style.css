@@ -214,8 +214,20 @@ ul{
 
 .change-negative {
 	color: #FF0000;
+	font-weight: bold;
   }
   
 .change-positive {
 	color: #33FF3C;
+	font-weight: bold;
+  }
+
+.OTM-negative {
+	color: #FF0000;
+	font-weight: bold;
+  }
+  
+.ITM-positive {
+	color: #2aa22a;
+	font-weight: bold;
   }

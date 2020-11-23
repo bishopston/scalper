@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.db.models import Max
+from django.db.models import Max, Min
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 
@@ -76,7 +76,23 @@ def OptionScreenerDetail(request, optionsymbol):
     volume = option_strikespan[0].volume
     trades = option_strikespan[0].trades
     open_interest = option_strikespan[0].open_interest
-    imp_vol = option_strikespan[0].imp_vol
+    imp_vol = "{:.2%}".format(option_strikespan[0].imp_vol)
+    stock = option_strikespan[0].stock
+    moneyness = 'moneyness'
+
+    if optiontype == 'c' and stock > strike: 
+        moneyness = 'ITM'
+    elif optiontype == 'c' and stock < strike:
+        moneyness = 'OTM'
+    elif optiontype == 'p' and stock > strike: 
+        moneyness = 'OTM'
+    elif optiontype == 'c' and stock < strike:
+        moneyness = 'ITM'
+    else:
+        moneyness = 'ATM'
+
+    lifetime_high = option_strikespan.aggregate(Max('closing_price'))
+    lifetime_low = option_strikespan.aggregate(Min('closing_price'))
 
     context = {
         'option_strikespan' : option_strikespan,
@@ -92,6 +108,9 @@ def OptionScreenerDetail(request, optionsymbol):
         'trades' : trades,
         'open_interest' : open_interest,
         'imp_vol' : imp_vol,
+        'moneyness' : moneyness,
+        'lifetime_high' : lifetime_high['closing_price__max'],
+        'lifetime_low' : lifetime_low['closing_price__min'],
     }
 
     return render(request, 'option_pricing/option_screener.html', context)
@@ -142,5 +161,5 @@ def OptionJSChartVolView(request, tradesymbol):
     for i in vol:
         voldata.append({json.dumps(i.date.strftime("%#d-%#m-%Y")):i.volume})
     
-    print(voldata)
+    #print(voldata)
     return JsonResponse(voldata, safe=False)
