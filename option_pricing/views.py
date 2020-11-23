@@ -62,10 +62,36 @@ def OptionScreenerDetail(request, optionsymbol):
     option_strikespan = Option.objects.filter(optionsymbol=optionsymbol).order_by('-date')
     option_symbol = Option(optionsymbol=optionsymbol)
     trade_symbol = option_symbol.optionsymbol 
+    asset = option_strikespan[0].asset
+    optiontype = option_strikespan[0].optiontype
+    if optiontype == 'c': 
+        optiontype = 'Call'
+    else:
+        optiontype = 'Put'
+    expmonth = option_strikespan[0].expmonthdate.strftime("%B")
+    expyear = option_strikespan[0].expmonthdate.strftime("%Y")
+    expdate = option_strikespan[0].expmonthdate.strftime("%#d-%#m-%Y")
+    strike = option_strikespan[0].strike
+    latest_trad_date = option_strikespan[0].date.strftime("%#d-%#m-%Y")
+    volume = option_strikespan[0].volume
+    trades = option_strikespan[0].trades
+    open_interest = option_strikespan[0].open_interest
+    imp_vol = option_strikespan[0].imp_vol
 
     context = {
         'option_strikespan' : option_strikespan,
         'trade_symbol' : trade_symbol,
+        'asset' : asset,
+        'optiontype' : optiontype,
+        'expmonth' : expmonth,
+        'expyear' : expyear,
+        'expdate' : expdate,
+        'strike' : strike,
+        'latest_trad_date' : latest_trad_date,
+        'volume' : volume,
+        'trades' : trades,
+        'open_interest' : open_interest,
+        'imp_vol' : imp_vol,
     }
 
     return render(request, 'option_pricing/option_screener.html', context)

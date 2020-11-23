@@ -7,6 +7,19 @@
 <div class="container bg-white text-dark">
 	<div class="row">
         <div class="col-md-12">
+            <p class="font-weight-bold">{{asset}} {{ optiontype }} {{ expmonth }} {{ expyear }} @ 
+                {% if asset == 'FTSE' %}
+                    {{ strike|add:"0" }}
+                {% else %}
+                    {{ strike }}
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container bg-white text-dark">
+	<div class="row">
+        <div class="col-md-12">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a href="#summary" class="nav-link active" role="tab" data-toggle="tab">Summary</a>
@@ -17,15 +30,106 @@
                 </li>
             </ul>
 
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="summary">Summary</div>
+            <div class="my-3 tab-content">
+                <div role="tabpanel" class="tab-pane active" id="summary">
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr>
+                              <th class="hidethis" scope="col">#</th>
+                              <th class="hidethis" scope="col">#</th>
+                              <th class="hidethis" scope="col">#</th>
+                              <th class="hidethis" scope="col">#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="pl-4">
+                                    <div style="float:left;width:50%;"><small>Implied Volatility:</small></div>
+                                    <div style="float:right;width:50%;text-align: left;"><small>{{asset}}</small></div>
+                                </td>
+                                <td class="pl-4">
+                                    <div style="float:left;width:50%;"><small>Latest Trading:</small></div>
+                                    <div style="float:right;width:50%;text-align: left;"><small>{{latest_trad_date}}</small></div>
+                                </td>
+                                <td class="pl-4">
+                                    <div style="float:left;width:50%;"><small>Implied Volatility:</small></div>
+                                    <div style="float:right;width:50%;text-align: left;"><small>{{imp_vol}}</small></div>
+                                </td>
+                                <td class="pl-4">
+                                    <div style="float:left;width:50%;"><small>Implied Volatility:</small></div>
+                                    <div style="float:right;width:50%;text-align: left;"><small>{{imp_vol}}</small></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4">
+                                    <div style="float:left;width:50%;"><small>Option Type:</small></div>
+                                    <div style="float:right;width:50%;text-align: left;"><small>{{optiontype}}</small></div>
+                                </td>
+                                <td class="px-4">
+                                    <div style="float:left;width:50%;"><small>Volume:</small></div>
+                                    <div style="float:right;width:50%;text-align: left;"><small>{{volume}}</small></div>
+                                </td>
+                                <td class="px-4">
+                                    <div style="float:left;width:50%;"><small>this is left</small></div>
+                                    <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
+                                </td>
+                                <td class="px-4">
+                                    <div style="float:left;width:50%;"><small>this is left</small></div>
+                                    <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4">
+                                    <div style="float:left;width:50%;"><small>Expiration Date:</small></div>
+                                    <div style="float:right;width:50%;text-align: left;"><small>{{expdate}}</small></div>
+                                </td>
+                                <td class="px-4">
+                                    <div style="float:left;width:50%;"><small>Trades:</small></div>
+                                    <div style="float:right;width:50%;text-align: left;"><small>{{trades}}</small></div>
+                                </td>
+                                <td class="px-4">
+                                    <div style="float:left;width:50%;"><small>this is left</small></div>
+                                    <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
+                                </td>
+                                <td class="px-4">
+                                    <div style="float:left;width:50%;"><small>this is left</small></div>
+                                    <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4">
+                                    <div style="float:left;width:50%;"><small>Exercise Price:</small></div>
+                                    <div style="float:right;width:50%;text-align: left;"><small>
+                                        {% if asset == 'FTSE' %}
+                                            {{ strike|add:"0" }}
+                                        {% else %}
+                                            {{ strike }}
+                                        {% endif %}
+                                    </small></div>
+                                </td>
+                                <td class="px-4">
+                                    <div style="float:left;width:50%;"><small>Open Interest:</small></div>
+                                    <div style="float:right;width:50%;text-align: left;"><small>{{open_interest}}</small></div>
+                                </td>
+                                <td class="px-4">
+                                    <div style="float:left;width:50%;"><small>this is left</small></div>
+                                    <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
+                                </td>
+                                <td class="px-4">
+                                    <div style="float:left;width:50%;"><small>this is left</small></div>
+                                    <div style="float:right;width:50%;text-align: right;"><small>this is right</small></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div role="tabpanel" class="tab-pane" id="chart">
                     <div class="container bg-white text-dark">
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-11">
                                 <canvas id="optionChart" width="400" height="200">
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <div class="btn-group-vertical">
                                     <button class="btn btn-link" onclick="updateChart()">10D</button>
                                     <button class="btn btn-link" onclick="updateChart()">10D</button>
@@ -40,6 +144,9 @@
 </div>
 
 <script> 
+
+    $('.hidethis').hide();
+
     var objId = "{{trade_symbol}}"
     var dataURL = `/options/chart/${objId}/`
     var dataURLvol = `/options/chart_vol/${objId}/`
@@ -162,8 +269,8 @@
                 ticks: {
                     autoSkip: true,
                     maxTicksLimit: 20,
-                    maxRotation: 90,
-                    minRotation: 90
+                    maxRotation: 45,
+                    minRotation: 45
                 }
             }]
         },
