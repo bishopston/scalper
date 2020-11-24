@@ -32,106 +32,108 @@
 
             <div class="my-3 tab-content">
                     <div role="tabpanel" class="tab-pane active" id="summary">
-                        <table class="table table-sm table-primary">
-                            <thead>
-                                <tr>
-                                    <th class="hidethis w-25" scope="col">#</th>
-                                    <th class="hidethis w-25" scope="col">#</th>
-                                    <th class="hidethis w-25" scope="col">#</th>
-                                    <th class="hidethis w-25" scope="col">#</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;text-align: left;"><small>Asset:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{asset}}</small></div>
-                                    </td>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;text-align: left;"><small>Latest Trading:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{latest_trad_date}}</small></div>
-                                    </td>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;text-align: left;"><small>Implied Volatility:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{imp_vol}}</small></div>
-                                    </td>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;text-align: left;"><small>Delta:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{imp_vol}}</small></div>
-                                    </td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;text-align: left;"><small>Option Type:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{optiontype}}</small></div>
-                                    </td>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;"><small>Volume:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{volume}}</small></div>
-                                    </td>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;"><small>Moneyness:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;">
-                                            <small class="font-weight-bold">
-                                                {% if moneyness == 'OTM' %}
-                                                <div class="OTM-negative"> 
-                                                {% else %} 
-                                                <div class="ITM-positive">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-primary">
+                                <thead>
+                                    <tr>
+                                        <th class="hidethis w-25" scope="col">#</th>
+                                        <th class="hidethis w-25" scope="col">#</th>
+                                        <th class="hidethis w-25" scope="col">#</th>
+                                        <th class="hidethis w-25" scope="col">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;text-align: left;"><small>Asset:</small></div>
+                                            <div style="float:left;width:50%;text-align: left;"><small class="font-weight-bold">{{asset}}</small></div>
+                                        </td>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;text-align: left;"><small>Latest Trading:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{latest_trad_date}}</small></div>
+                                        </td>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;text-align: left;"><small>Implied Volatility:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{imp_vol}}</small></div>
+                                        </td>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;text-align: left;"><small>Delta:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{imp_vol}}</small></div>
+                                        </td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;text-align: left;"><small>Option Type:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{optiontype}}</small></div>
+                                        </td>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;"><small>Volume:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{volume}}</small></div>
+                                        </td>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;"><small>Moneyness:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;">
+                                                <small class="font-weight-bold">
+                                                    {% if moneyness == 'OTM' %}
+                                                    <div class="OTM-negative"> 
+                                                    {% else %} 
+                                                    <div class="ITM-positive">
+                                                    {% endif %}
+                                                    {{moneyness}}
+                                                </small>
+                                            </div>
+                                        </td>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;"><small>Gamma:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">this is right</small></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;text-align: left;"><small>Expiration Date:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{expdate}}</small></div>
+                                        </td>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;"><small>Trades:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{trades}}</small></div>
+                                        </td>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;"><small>Lifetime High:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{lifetime_high}}</small></div>
+                                        </td>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;"><small>Theta:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">this is right</small></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;"><small>Exercise Price:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">
+                                                {% if asset == 'FTSE' %}
+                                                    {{ strike|add:"0" }}
+                                                {% else %}
+                                                    {{ strike }}
                                                 {% endif %}
-                                                {{moneyness}}
-                                            </small>
-                                        </div>
-                                    </td>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;"><small>Gamma:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">this is right</small></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;text-align: left;"><small>Expiration Date:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{expdate}}</small></div>
-                                    </td>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;"><small>Trades:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{trades}}</small></div>
-                                    </td>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;"><small>Lifetime High:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{lifetime_high}}</small></div>
-                                    </td>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;"><small>Theta:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">this is right</small></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;"><small>Exercise Price:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">
-                                            {% if asset == 'FTSE' %}
-                                                {{ strike|add:"0" }}
-                                            {% else %}
-                                                {{ strike }}
-                                            {% endif %}
-                                        </small></div>
-                                    </td>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;"><small>Open Interest:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{open_interest}}</small></div>
-                                    </td>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;"><small>Lifetime Low:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{lifetime_low}}</small></div>
-                                    </td>
-                                    <td class="px-2 w-25">
-                                        <div style="float:left;width:50%;"><small>Vega:</small></div>
-                                        <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">this is right</small></div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                            </small></div>
+                                        </td>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;"><small>Open Interest:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{open_interest}}</small></div>
+                                        </td>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;"><small>Lifetime Low:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">{{lifetime_low}}</small></div>
+                                        </td>
+                                        <td class="px-2 w-25">
+                                            <div style="float:left;width:50%;"><small>Vega:</small></div>
+                                            <div style="float:right;width:50%;text-align: left;"><small class="font-weight-bold">this is right</small></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 <div role="tabpanel" class="tab-pane" id="chart">
                     <div class="container bg-white text-dark">

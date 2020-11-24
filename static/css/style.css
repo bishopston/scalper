@@ -231,3 +231,19 @@ ul{
 	color: #2aa22a;
 	font-weight: bold;
   }
+
+.container-table-left {
+	width: 50%;
+	display: inline-block;
+
+	margin:0 auto;
+	text-align: left;
+}
+
+.container-table-right {
+	width: 50%;
+	display: inline-block;
+
+	margin:0 auto;
+	text-align: left;
+}
