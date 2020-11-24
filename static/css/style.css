@@ -232,18 +232,7 @@ ul{
 	font-weight: bold;
   }
 
-.container-table-left {
-	width: 50%;
-	display: inline-block;
+.vertical{
+	margin-bottom:0%;
 
-	margin:0 auto;
-	text-align: left;
-}
-
-.container-table-right {
-	width: 50%;
-	display: inline-block;
-
-	margin:0 auto;
-	text-align: left;
 }

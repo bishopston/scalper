@@ -62,6 +62,8 @@ def OptionScreenerDetail(request, optionsymbol):
     option_strikespan = Option.objects.filter(optionsymbol=optionsymbol).order_by('-date')
     option_symbol = Option(optionsymbol=optionsymbol)
     trade_symbol = option_symbol.optionsymbol 
+    closing_price = option_strikespan[0].closing_price
+    change = option_strikespan[0].change
     asset = option_strikespan[0].asset
     optiontype = option_strikespan[0].optiontype
     if optiontype == 'c': 
@@ -97,6 +99,8 @@ def OptionScreenerDetail(request, optionsymbol):
     context = {
         'option_strikespan' : option_strikespan,
         'trade_symbol' : trade_symbol,
+        'closing_price' : round(closing_price,3),
+        'change' : change,
         'asset' : asset,
         'optiontype' : optiontype,
         'expmonth' : expmonth,
@@ -113,7 +117,7 @@ def OptionScreenerDetail(request, optionsymbol):
         'lifetime_low' : lifetime_low['closing_price__min'],
     }
 
-    return render(request, 'option_pricing/option_screener.html', context)
+    return render(request, 'option_pricing/option_screener_div_table.html', context)
 """
 def OptionScreenerMultipleDetail(request, optionsymbol):
     option_strikespan = Option.objects.filter(optionsymbol=optionsymbol).order_by('-date')
